@@ -1,21 +1,22 @@
 import React, { useState } from 'react'
 
-const Search = () => {
-    const [searchTerm, setSearchTerm] = useState('')
+const Search = ({searchText}) => {
+    const [text, setText] = useState('')
 
-    const searchHandler = e => {
-        setSearchTerm(e.target.value);
-    }
+    const onChange= e => {
+        setText(e.target.value)
+      }
 
-    const submitHandler = e => {
-        e.preventDefault();
-        setSearchTerm(searchTerm)
-    }
+      const onSubmit = e => {
+          e.preventDefault();
+          searchText(text);
+      }
+
 
     return (
-        <form className="border-2 w-60" onSubmit={submitHandler}>
-            <input id="search" placeholder="Search Image Term" onChange={searchHandler} value={searchTerm}/>
-            <button className="bg-green-300">Search</button>
+        <form onSubmit={onSubmit}>
+           <input name="search" type="text" placeholder="Search Image" className="py-2 px-4 bg-gray-300" onChange={onChange} value={text}/> 
+           <button type="submit" className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Search</button>
         </form>
     )
 }
