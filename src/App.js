@@ -12,17 +12,19 @@ function App() {
       try {
       const response = await fetch('https://pixabay.com/api/?key=25322673-51c084ec97a6742ab3fc36455&q=yellow+flowers&image_type=photo&pretty=true');
 
+      console.log(response);
+
       const responseData = await response.json();
 
-      setImages(responseData);
-      
+      setImages(responseData.hits);
+
     } catch (error) {
       console.error(error)
     }
     }
     
     fetchImage();
-  })
+  }, [])
 
   return (
     <>
